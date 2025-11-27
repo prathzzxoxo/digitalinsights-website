@@ -54,7 +54,7 @@ class SOCAnimation {
     }
 
     createParticles() {
-        const particleCount = Math.floor(this.canvas.width / 100); // Reduced for cleaner look
+        const particleCount = Math.floor(this.canvas.width / 70); // Increased from /100 to /70 for more particles
         this.particles = [];
 
         for (let i = 0; i < particleCount; i++) {
@@ -231,7 +231,7 @@ class SOCAnimation {
     }
 
     drawConnections() {
-        const maxDistance = 200;
+        const maxDistance = 150; // Decreased from 200 to 150 for closer connections and more density
 
         this.particles.forEach((p1, i) => {
             this.particles.slice(i + 1).forEach(p2 => {
@@ -240,7 +240,7 @@ class SOCAnimation {
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
                 if (distance < maxDistance) {
-                    const opacity = (1 - distance / maxDistance) * 0.35;
+                    const opacity = (1 - distance / maxDistance) * 0.4; // Increased from 0.35 to 0.4 for more visible connections
                     this.ctx.beginPath();
                     this.ctx.moveTo(p1.x, p1.y);
                     this.ctx.lineTo(p2.x, p2.y);
