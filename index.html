@@ -6,6 +6,9 @@
     <meta name="description" content="Advanced cybersecurity solutions powered by AI. 24/7 threat detection, incident response, and cutting-edge security services for UAE businesses.">
     <title>Digital Insights - Advanced Cybersecurity Solutions</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo/favicon.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -274,21 +277,21 @@
                         detect and respond to threats in real-time, staying ahead of evolving cyber attacks.
                     </p>
                     <div class="ai-features">
-                        <div class="ai-feature">
+                        <div class="ai-feature" onclick="openAIPopup('automated')">
                             <i class="fas fa-robot"></i>
                             <div>
                                 <h4>Automated Detection</h4>
                                 <p>ML-powered threat identification</p>
                             </div>
                         </div>
-                        <div class="ai-feature">
+                        <div class="ai-feature" onclick="openAIPopup('behavioral')">
                             <i class="fas fa-chart-line"></i>
                             <div>
                                 <h4>Behavioral Analysis</h4>
                                 <p>Anomaly detection and pattern recognition</p>
                             </div>
                         </div>
-                        <div class="ai-feature">
+                        <div class="ai-feature" onclick="openAIPopup('response')">
                             <i class="fas fa-lightbulb"></i>
                             <div>
                                 <h4>Intelligent Response</h4>
@@ -297,6 +300,114 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Latest Security Insights</h2>
+                <p class="section-subtitle">Stay informed about the latest cybersecurity threats and solutions</p>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card" data-aos="fade-up">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop" alt="AI-Powered Threat Detection">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">AI Security</span>
+                        <h3 class="blog-title">AI-Powered Threat Detection: The Future of Cybersecurity</h3>
+                        <p class="blog-excerpt">Discover how artificial intelligence is revolutionizing threat detection and response capabilities in modern SOC operations.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Nov 27, 2025</span>
+                            <span class="blog-read-time">5 min read</span>
+                        </div>
+                        <a href="blog-ai-threat-detection.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop" alt="Incident Response">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Incident Response</span>
+                        <h3 class="blog-title">Rapid Incident Response: Minimizing Breach Impact</h3>
+                        <p class="blog-excerpt">Learn best practices for incident response that can help minimize damage and reduce recovery time during security breaches.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Nov 25, 2025</span>
+                            <span class="blog-read-time">6 min read</span>
+                        </div>
+                        <a href="blog-incident-response.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Cloud Security">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Cloud Security</span>
+                        <h3 class="blog-title">Securing Your Cloud Infrastructure: Essential Strategies</h3>
+                        <p class="blog-excerpt">Essential security strategies for protecting your cloud infrastructure from common threats and vulnerabilities.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Nov 20, 2025</span>
+                            <span class="blog-read-time">7 min read</span>
+                        </div>
+                        <a href="blog-cloud-security.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop" alt="Network Security">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Network Security</span>
+                        <h3 class="blog-title">Zero Trust Architecture: A New Security Paradigm</h3>
+                        <p class="blog-excerpt">Explore how zero trust architecture is changing the way organizations approach network security and access control.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Nov 18, 2025</span>
+                            <span class="blog-read-time">8 min read</span>
+                        </div>
+                        <a href="blog-zero-trust.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop" alt="Penetration Testing">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Pen Testing</span>
+                        <h3 class="blog-title">Penetration Testing Best Practices</h3>
+                        <p class="blog-excerpt">A comprehensive guide to conducting effective penetration tests and identifying vulnerabilities before attackers do.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Nov 15, 2025</span>
+                            <span class="blog-read-time">6 min read</span>
+                        </div>
+                        <a href="blog-penetration-testing.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop" alt="Compliance">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Compliance</span>
+                        <h3 class="blog-title">GDPR & Data Privacy: Compliance Made Simple</h3>
+                        <p class="blog-excerpt">Understanding GDPR requirements and implementing data privacy measures to protect your organization and customers.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Nov 12, 2025</span>
+                            <span class="blog-read-time">7 min read</span>
+                        </div>
+                        <a href="blog-gdpr-privacy.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -329,8 +440,24 @@
                     <div class="info-item">
                         <i class="fas fa-location-dot"></i>
                         <div>
-                            <h4>Location</h4>
-                            <p>Dubai, United Arab Emirates</p>
+                            <h4>Locations</h4>
+                            <div style="display: grid; gap: 1.5rem;">
+                                <div>
+                                    <p style="margin: 0; font-weight: 600;">Dubai, UAE</p>
+                                    <p style="margin: 0.25rem 0 0 0; font-size: 0.95rem; color: #B8B8B8;">
+                                        Office 211D Ibn Battuta Gate Offices<br>
+                                        Dubai, United Arab Emirates
+                                    </p>
+                                </div>
+                                <div>
+                                    <p style="margin: 0; font-weight: 600;">Milton Keynes, UK</p>
+                                    <p style="margin: 0.25rem 0 0 0; font-size: 0.95rem; color: #B8B8B8;">
+                                        Acorn House, 381 Midsummer Blvd<br>
+                                        Milton Keynes MK9 3HP<br>
+                                        United Kingdom
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -338,27 +465,27 @@
                 <div class="contact-form" data-aos="fade-left">
                     <form id="contactForm">
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <input type="text" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+                            <input type="tel" name="phone" placeholder="Phone Number">
                         </div>
                         <div class="form-group">
-                            <select id="service" name="service" required>
+                            <select name="service" required>
                                 <option value="">Select Service</option>
-                                <option value="dfir">Digital Forensics & Incident Response</option>
-                                <option value="soc">Security Operations Center</option>
-                                <option value="pentest">Penetration Testing</option>
-                                <option value="assessment">Security Assessment</option>
-                                <option value="platform">Platform Engineering</option>
-                                <option value="ai">AI Solutions</option>
+                                <option value="Digital Forensics & Incident Response">Digital Forensics & Incident Response</option>
+                                <option value="Security Operations Center">Security Operations Center</option>
+                                <option value="Penetration Testing">Penetration Testing</option>
+                                <option value="Security Assessment">Security Assessment</option>
+                                <option value="Platform Engineering">Platform Engineering</option>
+                                <option value="AI Solutions">AI Solutions</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                     </form>
@@ -366,6 +493,15 @@
             </div>
         </div>
     </section>
+
+    <!-- AI Feature Popup Modal -->
+    <div id="aiPopup" class="ai-popup-modal">
+        <div class="ai-popup-overlay" onclick="closeAIPopup()"></div>
+        <div class="ai-popup-content">
+            <button class="ai-popup-close" onclick="closeAIPopup()">&times;</button>
+            <div id="aiPopupBody"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -382,13 +518,22 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>AI Solutions</h3>
-                    <ul>
-                        <li><a href="#services">Threat Detection</a></li>
-                        <li><a href="#services">Automated Response</a></li>
-                        <li><a href="#services">Behavioral Analysis</a></li>
-                        <li><a href="#services">ML Security</a></li>
-                    </ul>
+                    <h3>Locations</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">Dubai, UAE</p>
+                        <p style="font-size: 0.9rem; color: #B8B8B8; margin: 0;">
+                            Office 211D Ibn Battuta Gate Offices<br>
+                            Dubai, United Arab Emirates
+                        </p>
+                    </div>
+                    <div>
+                        <p style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">Milton Keynes, UK</p>
+                        <p style="font-size: 0.9rem; color: #B8B8B8; margin: 0;">
+                            Acorn House, 381 Midsummer Blvd<br>
+                            Milton Keynes MK9 3HP<br>
+                            United Kingdom
+                        </p>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h3>Company</h3>
@@ -396,17 +541,18 @@
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#blog">Blog</a></li>
                         <li><a href="#contact">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Connect</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    <h3>Connect & Support</h3>
+                    <div class="social-links" style="margin-bottom: 1.5rem;">
+                        <a href="https://www.linkedin.com/company/dicuae/posts/?feedView=all" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     </div>
-                    <p class="footer-emergency">Emergency: <a href="tel:+97142415888">+971 4 2415888</a></p>
+                    <p style="font-size: 0.85rem; color: #B8B8B8; margin: 0;">
+                        <strong style="color: #fff;">Emergency Support:</strong><br>
+                        <a href="tel:+97142415888" style="color: #00D9FF; text-decoration: none;">+971 4 2415888</a><br>
+                        <span style="font-size: 0.8rem;">Available 24/7</span>
+                    </p>
                 </div>
             </div>
             <div class="footer-bottom">
