@@ -54,18 +54,28 @@ class SOCAnimation {
     }
 
     createParticles() {
-        const particleCount = Math.floor(this.canvas.width / 50); // Increased density for more particles
+        // Grid-based distribution for even spread across full background
+        const cols = Math.ceil(this.canvas.width / 80);
+        const rows = Math.ceil(this.canvas.height / 80);
+        const cellWidth = this.canvas.width / cols;
+        const cellHeight = this.canvas.height / rows;
         this.particles = [];
 
-        for (let i = 0; i < particleCount; i++) {
-            this.particles.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
-                vx: (Math.random() - 0.5) * 0.2, // Increased speed for more movement
-                vy: (Math.random() - 0.5) * 0.2, // Increased speed for more movement
-                radius: Math.random() * 1.8 + 1.0,
-                opacity: Math.random() * 0.5 + 0.3
-            });
+        // Create one particle per grid cell with randomization
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                const x = col * cellWidth + Math.random() * cellWidth * 0.8;
+                const y = row * cellHeight + Math.random() * cellHeight * 0.8;
+
+                this.particles.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 0.15,
+                    vy: (Math.random() - 0.5) * 0.15,
+                    radius: Math.random() * 1.5 + 0.8,
+                    opacity: Math.random() * 0.4 + 0.3
+                });
+            }
         }
     }
 
@@ -237,25 +247,7 @@ class SOCAnimation {
     }
 
     drawConnections() {
-        const maxDistance = 200; // Increased for more visible connections
-
-        this.particles.forEach((p1, i) => {
-            this.particles.slice(i + 1).forEach(p2 => {
-                const dx = p1.x - p2.x;
-                const dy = p1.y - p2.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < maxDistance) {
-                    const opacity = (1 - distance / maxDistance) * 0.5; // Increased opacity for better visibility
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(p1.x, p1.y);
-                    this.ctx.lineTo(p2.x, p2.y);
-                    this.ctx.strokeStyle = `rgba(0, 217, 255, ${opacity})`;
-                    this.ctx.lineWidth = 1.2; // Slightly thicker lines
-                    this.ctx.stroke();
-                }
-            });
-        });
+        // Connections disabled for cleaner background with just floating particles
     }
 
     drawHexagon(x, y, size) {
