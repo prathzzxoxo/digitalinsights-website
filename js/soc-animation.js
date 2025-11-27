@@ -54,27 +54,31 @@ class SOCAnimation {
     }
 
     createParticles() {
-        // Grid-based distribution for even spread across full background
-        const cols = Math.ceil(this.canvas.width / 80);
-        const rows = Math.ceil(this.canvas.height / 80);
+        // Grid-based distribution for even spread across full background with increased density
+        const cols = Math.ceil(this.canvas.width / 60); // Smaller cells = more particles
+        const rows = Math.ceil(this.canvas.height / 60); // Smaller cells = more particles
         const cellWidth = this.canvas.width / cols;
         const cellHeight = this.canvas.height / rows;
         this.particles = [];
 
-        // Create one particle per grid cell with randomization
+        // Create 2-3 particles per grid cell for much denser coverage
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < cols; col++) {
-                const x = col * cellWidth + Math.random() * cellWidth * 0.8;
-                const y = row * cellHeight + Math.random() * cellHeight * 0.8;
+                const particlesPerCell = Math.floor(Math.random() * 2) + 2; // 2-3 particles per cell
 
-                this.particles.push({
-                    x: x,
-                    y: y,
-                    vx: (Math.random() - 0.5) * 0.15,
-                    vy: (Math.random() - 0.5) * 0.15,
-                    radius: Math.random() * 1.5 + 0.8,
-                    opacity: Math.random() * 0.4 + 0.3
-                });
+                for (let p = 0; p < particlesPerCell; p++) {
+                    const x = col * cellWidth + Math.random() * cellWidth;
+                    const y = row * cellHeight + Math.random() * cellHeight;
+
+                    this.particles.push({
+                        x: x,
+                        y: y,
+                        vx: (Math.random() - 0.5) * 0.25, // Increased movement speed
+                        vy: (Math.random() - 0.5) * 0.25, // Increased movement speed
+                        radius: Math.random() * 1.6 + 0.7,
+                        opacity: Math.random() * 0.5 + 0.25
+                    });
+                }
             }
         }
     }
@@ -84,21 +88,27 @@ class SOCAnimation {
         const margin = 100;
         const isMobile = this.canvas.width < 768;
 
-        // Enhanced monitors with more servers and routers - 8 on desktop, 4 on mobile
+        // Significantly more servers and routers - 12 on desktop, 6 on mobile
         const positions = isMobile ? [
             { x: this.canvas.width * 0.15, y: this.canvas.height * 0.25, type: 'shield' },
             { x: this.canvas.width * 0.85, y: this.canvas.height * 0.25, type: 'server' },
             { x: this.canvas.width * 0.25, y: this.canvas.height * 0.75, type: 'network' },
-            { x: this.canvas.width * 0.75, y: this.canvas.height * 0.75, type: 'lock' }
+            { x: this.canvas.width * 0.75, y: this.canvas.height * 0.75, type: 'lock' },
+            { x: this.canvas.width * 0.5, y: this.canvas.height * 0.5, type: 'server' },
+            { x: this.canvas.width * 0.9, y: this.canvas.height * 0.9, type: 'network' }
         ] : [
-            { x: this.canvas.width * 0.12, y: this.canvas.height * 0.2, type: 'shield' },
-            { x: this.canvas.width * 0.25, y: this.canvas.height * 0.35, type: 'server' },
-            { x: this.canvas.width * 0.35, y: this.canvas.height * 0.15, type: 'network' },
-            { x: this.canvas.width * 0.5, y: this.canvas.height * 0.5, type: 'lock' },
-            { x: this.canvas.width * 0.65, y: this.canvas.height * 0.25, type: 'server' },
-            { x: this.canvas.width * 0.75, y: this.canvas.height * 0.65, type: 'network' },
-            { x: this.canvas.width * 0.88, y: this.canvas.height * 0.35, type: 'shield' },
-            { x: this.canvas.width * 0.78, y: this.canvas.height * 0.8, type: 'lock' }
+            { x: this.canvas.width * 0.1, y: this.canvas.height * 0.15, type: 'shield' },
+            { x: this.canvas.width * 0.25, y: this.canvas.height * 0.3, type: 'server' },
+            { x: this.canvas.width * 0.35, y: this.canvas.height * 0.1, type: 'network' },
+            { x: this.canvas.width * 0.5, y: this.canvas.height * 0.4, type: 'lock' },
+            { x: this.canvas.width * 0.65, y: this.canvas.height * 0.2, type: 'server' },
+            { x: this.canvas.width * 0.75, y: this.canvas.height * 0.6, type: 'network' },
+            { x: this.canvas.width * 0.88, y: this.canvas.height * 0.3, type: 'shield' },
+            { x: this.canvas.width * 0.8, y: this.canvas.height * 0.8, type: 'lock' },
+            { x: this.canvas.width * 0.9, y: this.canvas.height * 0.9, type: 'server' }, // Bottom right
+            { x: this.canvas.width * 0.15, y: this.canvas.height * 0.85, type: 'network' },
+            { x: this.canvas.width * 0.45, y: this.canvas.height * 0.85, type: 'server' },
+            { x: this.canvas.width * 0.6, y: this.canvas.height * 0.75, type: 'shield' }
         ];
 
         positions.forEach(pos => {
