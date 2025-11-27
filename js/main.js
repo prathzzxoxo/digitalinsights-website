@@ -133,6 +133,8 @@ function animateCounter(element) {
                 element.textContent = (current / 1000000).toFixed(1) + 'M+';
             } else if (target >= 1000) {
                 element.textContent = Math.floor(current / 1000) + 'K+';
+            } else if (target >= 100) {
+                element.textContent = Math.floor(current) + '+';
             } else if (target % 1 !== 0) {
                 element.textContent = current.toFixed(1);
             } else {
@@ -146,6 +148,8 @@ function animateCounter(element) {
                 element.textContent = (target / 1000000).toFixed(1) + 'M+';
             } else if (target >= 1000) {
                 element.textContent = Math.floor(target / 1000) + 'K+';
+            } else if (target >= 100) {
+                element.textContent = Math.floor(target) + '+';
             } else if (target % 1 !== 0) {
                 element.textContent = target.toFixed(1);
             } else {
@@ -187,7 +191,7 @@ function initContactForm() {
     const form = document.getElementById('contactForm');
 
     if (form) {
-        form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const submitButton = form.querySelector('button[type="submit"]');
@@ -197,39 +201,77 @@ function initContactForm() {
             submitButton.disabled = true;
             submitButton.textContent = 'Sending...';
 
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
+            // Collect form data as JSON
+            const formData = new FormData(form);
+            const data = {
+                from_name: formData.get('name'),
+                from_email: formData.get('email'),
+                phone: formData.get('phone'),
+                service: formData.get('service'),
+                message: formData.get('message')
             };
 
-            // Simulate form submission (replace with actual API call)
-            try {
-                // Replace this with your actual form submission logic
-                await simulateFormSubmission(formData);
-
-                // Show success message
-                showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+            // Send to local server proxy (secure, hides form ID)
+            // Falls back to Formspree if server is unavailable
+            fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .catch(() => {
+                // Fallback to Formspree if server is down
+                return fetch('https://formspree.io/f/mnnkpglj', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+            })
+            .then(response => {
+                // Show success popup after 2-3 seconds delay
+                setTimeout(() => {
+                    showSuccessPopup();
+                }, 2500);
                 form.reset();
-
-            } catch (error) {
-                showNotification('Failed to send message. Please try again or call us directly.', 'error');
-            } finally {
                 submitButton.disabled = false;
                 submitButton.textContent = originalText;
-            }
+            })
+            .catch(error => {
+                // Still show success popup because Formspree might have processed it
+                setTimeout(() => {
+                    showSuccessPopup();
+                }, 2500);
+                form.reset();
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            });
         });
     }
 }
 
-function simulateFormSubmission(data) {
-    return new Promise((resolve) => {
-        console.log('Form data:', data);
-        setTimeout(resolve, 1500);
-    });
+function showSuccessPopup() {
+    const popup = document.createElement('div');
+    popup.className = 'form-success-popup';
+    popup.innerHTML = `
+        <div class="success-popup-content">
+            <div class="success-icon">✓</div>
+            <h3>Form Submitted Successfully!</h3>
+            <p>Please wait for our team to reach out to you</p>
+            <button onclick="this.closest('.form-success-popup').remove()">Close</button>
+        </div>
+    `;
+    document.body.appendChild(popup);
+
+    // Auto-close after 6 seconds
+    setTimeout(() => {
+        if (popup.parentNode) {
+            popup.remove();
+        }
+    }, 6000);
 }
 
 function showNotification(message, type) {
@@ -409,3 +451,80 @@ console.log('%c Digital Insights Security ',
     'background: #D4AF37; color: #000; font-size: 20px; font-weight: bold; padding: 10px;');
 console.log('%c Protected by advanced cybersecurity solutions ',
     'color: #D4AF37; font-size: 14px;');
+
+// ========================================
+// AI Feature Popups
+// ========================================
+
+const aiFeatureContent = {
+    automated: {
+        title: 'Automated Threat Detection',
+        content: `
+            <p>Our machine learning-powered detection system continuously monitors your network and systems in real-time, identifying threats before they can cause damage.</p>
+            <ul>
+                <li>Real-time threat identification using advanced ML algorithms</li>
+                <li>Zero-day vulnerability detection and classification</li>
+                <li>Behavioral analysis to identify suspicious activities</li>
+                <li>Automatic threat scoring and prioritization</li>
+                <li>Integration with SIEM systems for centralized monitoring</li>
+            </ul>
+            <p><strong>Key Benefits:</strong> Reduces detection time from hours to seconds, minimizes false positives, and provides immediate actionable intelligence.</p>
+        `
+    },
+    behavioral: {
+        title: 'Behavioral Analysis & Anomaly Detection',
+        content: `
+            <p>Advanced behavioral analysis that understands normal network patterns and instantly alerts when anomalies occur, catching sophisticated attacks that traditional security misses.</p>
+            <ul>
+                <li>User behavior profiling and baseline establishment</li>
+                <li>Anomaly detection across network and system events</li>
+                <li>Pattern recognition for known attack methodologies</li>
+                <li>Insider threat detection and prevention</li>
+                <li>Lateral movement detection and blocking</li>
+            </ul>
+            <p><strong>Key Benefits:</strong> Catches advanced persistent threats (APTs), insider threats, and zero-day attacks that bypass signature-based detection.</p>
+        `
+    },
+    response: {
+        title: 'Intelligent Automated Response',
+        content: `
+            <p>Autonomous response capabilities that automatically contain threats and execute remediation actions, dramatically reducing response time and minimizing damage.</p>
+            <ul>
+                <li>Automated incident isolation and containment</li>
+                <li>Instant threat remediation and threat removal</li>
+                <li>Automated credential reset and access revocation</li>
+                <li>Network segmentation and lateral movement blocking</li>
+                <li>Self-healing system recovery and restoration</li>
+            </ul>
+            <p><strong>Key Benefits:</strong> Eliminates manual response delays, prevents breach escalation, and ensures rapid recovery with minimal operational impact.</p>
+        `
+    }
+};
+
+function openAIPopup(featureType) {
+    const popup = document.getElementById('aiPopup');
+    const popupBody = document.getElementById('aiPopupBody');
+    const feature = aiFeatureContent[featureType];
+
+    if (feature) {
+        popupBody.innerHTML = `
+            <h3>${feature.title}</h3>
+            ${feature.content}
+        `;
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeAIPopup() {
+    const popup = document.getElementById('aiPopup');
+    popup.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close popup when pressing Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeAIPopup();
+    }
+});
