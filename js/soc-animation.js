@@ -54,17 +54,17 @@ class SOCAnimation {
     }
 
     createParticles() {
-        const particleCount = Math.floor(this.canvas.width / 70); // Increased from /100 to /70 for more particles
+        const particleCount = Math.floor(this.canvas.width / 50); // Increased density for more particles
         this.particles = [];
 
         for (let i = 0; i < particleCount; i++) {
             this.particles.push({
                 x: Math.random() * this.canvas.width,
                 y: Math.random() * this.canvas.height,
-                vx: (Math.random() - 0.5) * 0.1, // Reduced speed from 0.2 to 0.1
-                vy: (Math.random() - 0.5) * 0.1, // Reduced speed from 0.2 to 0.1
-                radius: Math.random() * 1.5 + 0.8,
-                opacity: Math.random() * 0.4 + 0.3
+                vx: (Math.random() - 0.5) * 0.2, // Increased speed for more movement
+                vy: (Math.random() - 0.5) * 0.2, // Increased speed for more movement
+                radius: Math.random() * 1.8 + 1.0,
+                opacity: Math.random() * 0.5 + 0.3
             });
         }
     }
@@ -74,15 +74,21 @@ class SOCAnimation {
         const margin = 100;
         const isMobile = this.canvas.width < 768;
 
-        // Reduced hexagons for cleaner look - 4 on desktop, 2 on mobile
+        // Enhanced monitors with more servers and routers - 8 on desktop, 4 on mobile
         const positions = isMobile ? [
             { x: this.canvas.width * 0.15, y: this.canvas.height * 0.25, type: 'shield' },
-            { x: this.canvas.width * 0.85, y: this.canvas.height * 0.75, type: 'network' }
+            { x: this.canvas.width * 0.85, y: this.canvas.height * 0.25, type: 'server' },
+            { x: this.canvas.width * 0.25, y: this.canvas.height * 0.75, type: 'network' },
+            { x: this.canvas.width * 0.75, y: this.canvas.height * 0.75, type: 'lock' }
         ] : [
-            { x: this.canvas.width * 0.15, y: this.canvas.height * 0.25, type: 'shield' },
-            { x: this.canvas.width * 0.35, y: this.canvas.height * 0.7, type: 'lock' },
-            { x: this.canvas.width * 0.65, y: this.canvas.height * 0.3, type: 'server' },
-            { x: this.canvas.width * 0.85, y: this.canvas.height * 0.75, type: 'network' }
+            { x: this.canvas.width * 0.12, y: this.canvas.height * 0.2, type: 'shield' },
+            { x: this.canvas.width * 0.25, y: this.canvas.height * 0.35, type: 'server' },
+            { x: this.canvas.width * 0.35, y: this.canvas.height * 0.15, type: 'network' },
+            { x: this.canvas.width * 0.5, y: this.canvas.height * 0.5, type: 'lock' },
+            { x: this.canvas.width * 0.65, y: this.canvas.height * 0.25, type: 'server' },
+            { x: this.canvas.width * 0.75, y: this.canvas.height * 0.65, type: 'network' },
+            { x: this.canvas.width * 0.88, y: this.canvas.height * 0.35, type: 'shield' },
+            { x: this.canvas.width * 0.78, y: this.canvas.height * 0.8, type: 'lock' }
         ];
 
         positions.forEach(pos => {
@@ -117,7 +123,7 @@ class SOCAnimation {
         // Create attack lines that animate
         this.attacks = [];
         const isMobile = this.canvas.width < 768;
-        const attackCount = isMobile ? 3 : 6; // Reduced for cleaner look
+        const attackCount = isMobile ? 5 : 10; // Increased for more activity
         for (let i = 0; i < attackCount; i++) {
             const fromLoc = this.worldLocations[Math.floor(Math.random() * this.worldLocations.length)];
             let toLoc = this.worldLocations[Math.floor(Math.random() * this.worldLocations.length)];
@@ -130,7 +136,7 @@ class SOCAnimation {
                 from: fromLoc,
                 to: toLoc,
                 progress: Math.random(),
-                speed: 0.0008 + Math.random() * 0.0008, // Reduced speed by 20%
+                speed: 0.0010 + Math.random() * 0.0010, // Increased speed for more active animation
                 detected: Math.random() > 0.5
             });
         }
@@ -231,7 +237,7 @@ class SOCAnimation {
     }
 
     drawConnections() {
-        const maxDistance = 150; // Decreased from 200 to 150 for closer connections and more density
+        const maxDistance = 200; // Increased for more visible connections
 
         this.particles.forEach((p1, i) => {
             this.particles.slice(i + 1).forEach(p2 => {
@@ -240,12 +246,12 @@ class SOCAnimation {
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
                 if (distance < maxDistance) {
-                    const opacity = (1 - distance / maxDistance) * 0.4; // Increased from 0.35 to 0.4 for more visible connections
+                    const opacity = (1 - distance / maxDistance) * 0.5; // Increased opacity for better visibility
                     this.ctx.beginPath();
                     this.ctx.moveTo(p1.x, p1.y);
                     this.ctx.lineTo(p2.x, p2.y);
                     this.ctx.strokeStyle = `rgba(0, 217, 255, ${opacity})`;
-                    this.ctx.lineWidth = 1;
+                    this.ctx.lineWidth = 1.2; // Slightly thicker lines
                     this.ctx.stroke();
                 }
             });
