@@ -526,5 +526,208 @@ function closeAIPopup() {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeAIPopup();
+        closeBlogModal();
     }
 });
+
+// ========================================
+// Blog Modal Functions
+// ========================================
+
+const blogContent = {
+    'ai-threat-detection': {
+        content: `
+            <h2>AI-Powered Threat Detection: The Future of Cybersecurity</h2>
+            <p>Artificial intelligence is revolutionizing how organizations detect and respond to cyber threats. Traditional rule-based security systems can only catch known threats, but AI-powered systems learn from patterns and can identify zero-day exploits and advanced persistent threats.</p>
+
+            <h3>How AI Improves Threat Detection</h3>
+            <ul>
+                <li><strong>Pattern Recognition:</strong> AI analyzes millions of data points to identify suspicious patterns</li>
+                <li><strong>Behavioral Analysis:</strong> Detects anomalies in user and system behavior</li>
+                <li><strong>Predictive Threat Intelligence:</strong> Anticipates future attacks based on current trends</li>
+                <li><strong>Real-time Processing:</strong> Immediate threat identification and response</li>
+            </ul>
+
+            <h3>Key Benefits</h3>
+            <ul>
+                <li>Catches advanced threats that bypass traditional defenses</li>
+                <li>Reduces false positives and alert fatigue</li>
+                <li>Enables faster incident response</li>
+                <li>Improves overall security posture</li>
+            </ul>
+
+            <p>Organizations implementing AI-powered threat detection see dramatic improvements in their security operations, with faster detection times and more accurate threat identification.</p>
+        `
+    },
+    'incident-response': {
+        content: `
+            <h2>Rapid Incident Response: Minimizing Breach Impact</h2>
+            <p>Every minute counts when a security breach occurs. Organizations that respond quickly to incidents can dramatically reduce the damage, financial losses, and reputational harm.</p>
+
+            <h3>The Incident Response Lifecycle</h3>
+            <ul>
+                <li><strong>Detection:</strong> Identifying that a security incident has occurred</li>
+                <li><strong>Analysis:</strong> Understanding the scope and nature of the breach</li>
+                <li><strong>Containment:</strong> Stopping the attacker's access and preventing further damage</li>
+                <li><strong>Eradication:</strong> Removing the attacker's tools and access points</li>
+                <li><strong>Recovery:</strong> Restoring systems to normal operation</li>
+                <li><strong>Lessons Learned:</strong> Analyzing what happened and improving future response</li>
+            </ul>
+
+            <h3>Response Time Statistics</h3>
+            <p>Companies that contain breaches within 30 days save an average of $1 million compared to those that take 90+ days to contain.</p>
+
+            <h3>Best Practices</h3>
+            <ul>
+                <li>Have an incident response plan in place before a breach occurs</li>
+                <li>Train your team regularly on incident response procedures</li>
+                <li>Maintain 24/7 monitoring and alerting capabilities</li>
+                <li>Document all incidents and maintain detailed logs</li>
+                <li>Conduct post-incident reviews to improve future response</li>
+            </ul>
+        `
+    },
+    'cloud-security': {
+        content: `
+            <h2>Securing Your Cloud Infrastructure: Essential Strategies</h2>
+            <p>Cloud computing offers tremendous benefits in scalability and flexibility, but it also introduces new security challenges. Organizations must implement comprehensive security strategies to protect their cloud infrastructure.</p>
+
+            <h3>Key Cloud Security Challenges</h3>
+            <ul>
+                <li>Misconfigured cloud resources exposing sensitive data</li>
+                <li>Inadequate access controls and identity management</li>
+                <li>Lack of visibility into cloud environments</li>
+                <li>Compliance and regulatory requirements</li>
+                <li>Insider threats and credential theft</li>
+            </ul>
+
+            <h3>Essential Security Strategies</h3>
+            <ul>
+                <li><strong>Access Control:</strong> Implement least-privilege access and multi-factor authentication</li>
+                <li><strong>Data Protection:</strong> Encrypt data at rest and in transit</li>
+                <li><strong>Monitoring:</strong> Maintain continuous visibility into cloud resources</li>
+                <li><strong>Compliance:</strong> Meet regulatory requirements and industry standards</li>
+                <li><strong>Backup & Recovery:</strong> Maintain secure backups for disaster recovery</li>
+            </ul>
+
+            <p>A comprehensive cloud security strategy requires continuous monitoring, regular assessments, and proactive threat detection to protect your organization's most critical assets.</p>
+        `
+    },
+    'zero-trust': {
+        content: `
+            <h2>Zero Trust Architecture: A New Security Paradigm</h2>
+            <p>Traditional security models assume that everything inside the network is trusted. Zero Trust Architecture changes this fundamental assumption by requiring verification of every user and device, regardless of location.</p>
+
+            <h3>Core Principles of Zero Trust</h3>
+            <ul>
+                <li><strong>Never Trust, Always Verify:</strong> Verify every access request</li>
+                <li><strong>Assume Breach:</strong> Design systems assuming attackers are already inside</li>
+                <li><strong>Verify Explicitly:</strong> Use all available data points for authentication</li>
+                <li><strong>Least Privilege Access:</strong> Grant minimum necessary permissions</li>
+                <li><strong>Protect Every Resource:</strong> Apply security to all assets, not just the perimeter</li>
+            </ul>
+
+            <h3>Implementation Components</h3>
+            <ul>
+                <li>Multi-factor authentication</li>
+                <li>Micro-segmentation of networks</li>
+                <li>Continuous monitoring and analytics</li>
+                <li>Encryption of all communications</li>
+                <li>Detailed access logging and auditing</li>
+            </ul>
+
+            <p>Zero Trust Architecture provides a more effective security model for modern environments where users, devices, and applications are distributed across multiple locations and networks.</p>
+        `
+    },
+    'penetration-testing': {
+        content: `
+            <h2>Penetration Testing Best Practices</h2>
+            <p>Penetration testing is a critical component of a comprehensive security program. It involves simulating real-world attacks to identify vulnerabilities before malicious actors find them.</p>
+
+            <h3>Types of Penetration Tests</h3>
+            <ul>
+                <li><strong>External Testing:</strong> Tests from outside your network</li>
+                <li><strong>Internal Testing:</strong> Tests from inside your network</li>
+                <li><strong>Blind Testing:</strong> Testers have limited information</li>
+                <li><strong>Double-blind Testing:</strong> Neither testers nor defenders know about the test</li>
+            </ul>
+
+            <h3>Penetration Testing Process</h3>
+            <ul>
+                <li>Reconnaissance and information gathering</li>
+                <li>Scanning and enumeration</li>
+                <li>Vulnerability analysis</li>
+                <li>Exploitation attempts</li>
+                <li>Post-exploitation and privilege escalation</li>
+                <li>Reporting and recommendations</li>
+            </ul>
+
+            <h3>Best Practices</h3>
+            <ul>
+                <li>Conduct tests regularly (at least annually)</li>
+                <li>Have proper authorization and scope defined</li>
+                <li>Use qualified security professionals</li>
+                <li>Test both technical and social engineering aspects</li>
+                <li>Implement findings and retest to verify fixes</li>
+            </ul>
+        `
+    },
+    'gdpr-privacy': {
+        content: `
+            <h2>GDPR & Data Privacy: Compliance Made Simple</h2>
+            <p>The General Data Protection Regulation (GDPR) has fundamentally changed how organizations handle personal data. Understanding and implementing GDPR requirements is essential for any organization processing data of EU residents.</p>
+
+            <h3>Key GDPR Principles</h3>
+            <ul>
+                <li><strong>Lawfulness, Fairness, Transparency:</strong> Legal basis for processing</li>
+                <li><strong>Purpose Limitation:</strong> Data only used for stated purposes</li>
+                <li><strong>Data Minimization:</strong> Collect only necessary data</li>
+                <li><strong>Accuracy:</strong> Keep data accurate and up-to-date</li>
+                <li><strong>Storage Limitation:</strong> Don't keep data longer than needed</li>
+                <li><strong>Integrity and Confidentiality:</strong> Protect data security</li>
+            </ul>
+
+            <h3>GDPR Compliance Requirements</h3>
+            <ul>
+                <li>Obtain clear consent for data processing</li>
+                <li>Implement data protection by design</li>
+                <li>Conduct Data Protection Impact Assessments</li>
+                <li>Maintain detailed processing records</li>
+                <li>Respond to data subject requests within 30 days</li>
+                <li>Notify authorities of data breaches within 72 hours</li>
+            </ul>
+
+            <h3>Penalties for Non-Compliance</h3>
+            <p>Fines can reach up to €20 million or 4% of annual global turnover, whichever is higher. Proper GDPR compliance is not just a legal requirement but essential for maintaining customer trust.</p>
+        `
+    }
+};
+
+function openBlogPost(postId, title, date, readTime, category, image) {
+    const modal = document.getElementById('blogModal');
+    const titleEl = document.getElementById('blogModalTitle');
+    const dateEl = document.getElementById('blogModalDate');
+    const readTimeEl = document.getElementById('blogModalReadTime');
+    const categoryEl = document.getElementById('blogModalCategory');
+    const imageEl = document.getElementById('blogModalImage');
+    const bodyEl = document.getElementById('blogModalBody');
+
+    if (blogContent[postId]) {
+        titleEl.textContent = title;
+        dateEl.textContent = date;
+        readTimeEl.textContent = readTime;
+        categoryEl.textContent = category;
+        imageEl.src = image;
+        bodyEl.innerHTML = blogContent[postId].content;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        window.scrollTo(0, 0);
+    }
+}
+
+function closeBlogModal() {
+    const modal = document.getElementById('blogModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}

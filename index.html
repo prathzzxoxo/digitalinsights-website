@@ -325,7 +325,7 @@
                             <span class="blog-date">Nov 27, 2025</span>
                             <span class="blog-read-time">5 min read</span>
                         </div>
-                        <a href="blog-ai-threat-detection.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" onclick="openBlogPost('ai-threat-detection', 'AI-Powered Threat Detection: The Future of Cybersecurity', 'Nov 27, 2025', '5 min read', 'AI Security', 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop'); return false;" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -341,7 +341,7 @@
                             <span class="blog-date">Nov 25, 2025</span>
                             <span class="blog-read-time">6 min read</span>
                         </div>
-                        <a href="blog-incident-response.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" onclick="openBlogPost('incident-response', 'Rapid Incident Response: Minimizing Breach Impact', 'Nov 25, 2025', '6 min read', 'Incident Response', 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'); return false;" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -357,7 +357,7 @@
                             <span class="blog-date">Nov 20, 2025</span>
                             <span class="blog-read-time">7 min read</span>
                         </div>
-                        <a href="blog-cloud-security.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" onclick="openBlogPost('cloud-security', 'Securing Your Cloud Infrastructure: Essential Strategies', 'Nov 20, 2025', '7 min read', 'Cloud Security', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'); return false;" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -373,7 +373,7 @@
                             <span class="blog-date">Nov 18, 2025</span>
                             <span class="blog-read-time">8 min read</span>
                         </div>
-                        <a href="blog-zero-trust.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" onclick="openBlogPost('zero-trust', 'Zero Trust Architecture: A New Security Paradigm', 'Nov 18, 2025', '8 min read', 'Network Security', 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'); return false;" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -389,7 +389,7 @@
                             <span class="blog-date">Nov 15, 2025</span>
                             <span class="blog-read-time">6 min read</span>
                         </div>
-                        <a href="blog-penetration-testing.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" onclick="openBlogPost('penetration-testing', 'Penetration Testing Best Practices', 'Nov 15, 2025', '6 min read', 'Pen Testing', 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop'); return false;" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -405,12 +405,37 @@
                             <span class="blog-date">Nov 12, 2025</span>
                             <span class="blog-read-time">7 min read</span>
                         </div>
-                        <a href="blog-gdpr-privacy.html" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" onclick="openBlogPost('gdpr-privacy', 'GDPR & Data Privacy: Compliance Made Simple', 'Nov 12, 2025', '7 min read', 'Compliance', 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop'); return false;" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
             </div>
         </div>
     </section>
+
+    <!-- Blog Post Modal -->
+    <div id="blogModal" class="blog-modal">
+        <div class="blog-modal-overlay" onclick="closeBlogModal()"></div>
+        <div class="blog-modal-content">
+            <button class="blog-modal-close" onclick="closeBlogModal()">&times;</button>
+            <div class="blog-modal-scroll">
+                <div class="blog-post-header">
+                    <a href="#" onclick="closeBlogModal(); return false;" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                    <h1 id="blogModalTitle" class="blog-post-title">Blog Title</h1>
+                    <div class="blog-post-meta">
+                        <span class="meta-item"><i class="fas fa-calendar"></i> <span id="blogModalDate">Date</span></span>
+                        <span class="meta-item"><i class="fas fa-clock"></i> <span id="blogModalReadTime">Read time</span></span>
+                        <span class="meta-item"><i class="fas fa-tag"></i> <span id="blogModalCategory">Category</span></span>
+                    </div>
+                </div>
+                <div class="blog-post-image-container">
+                    <img id="blogModalImage" src="" alt="Blog post" class="blog-post-image">
+                </div>
+                <div class="blog-post-content" id="blogModalBody">
+                    <!-- Content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
