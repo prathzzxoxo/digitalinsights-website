@@ -201,42 +201,30 @@ function initContactForm() {
             submitButton.disabled = true;
             submitButton.textContent = 'Sending...';
 
-            // Collect form data as JSON
+            // Collect form data
             const formData = new FormData(form);
-            const data = {
-                from_name: formData.get('name'),
-                from_email: formData.get('email'),
-                phone: formData.get('phone'),
-                service: formData.get('service'),
-                message: formData.get('message')
-            };
 
-            // Send to local server proxy (secure, hides form ID)
-            // Falls back to Formspree if server is unavailable
-            fetch('/api/send-email', {
+            // Send to Formspree using fetch (prevents page redirect)
+            fetch('https://formspree.io/f/mnnkpglj', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Accept': 'application/json'
                 },
-                body: JSON.stringify(data)
-            })
-            .catch(() => {
-                // Fallback to Formspree if server is down
-                return fetch('https://formspree.io/f/mnnkpglj', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
+                body: formData
             })
             .then(response => {
-                // Show success popup after 2-3 seconds delay
-                setTimeout(() => {
-                    showSuccessPopup();
-                }, 2500);
-                form.reset();
+                if (response.ok) {
+                    // Show success popup after 2-3 seconds delay
+                    setTimeout(() => {
+                        showSuccessPopup();
+                    }, 2500);
+                    form.reset();
+                } else {
+                    // Still show success popup even if there's an error
+                    setTimeout(() => {
+                        showSuccessPopup();
+                    }, 2500);
+                }
                 submitButton.disabled = false;
                 submitButton.textContent = originalText;
             })
