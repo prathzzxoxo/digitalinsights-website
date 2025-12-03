@@ -130,10 +130,6 @@ h1, h2, h3, h4, h5, h6 {
 .logo {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    border: 2px solid #0066FF;
     transition: var(--transition-normal);
 }
 
