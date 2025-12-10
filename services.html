@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Comprehensive cybersecurity services including Digital Forensics, SOC, Penetration Testing, Security Assessments, Platform Engineering, and AI Solutions.">
+    <title>Our Services - Digital Insights</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo/favicon.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css?v=3">
+    <link rel="stylesheet" href="css/animations.css?v=3">
+    <link rel="stylesheet" href="css/responsive.css?v=3">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo/DIC_LOGO.png" alt="Digital Insights" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">Why Digital Insights</a></li>
+                    <li><a href="services.html" class="nav-link active">Services</a></li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="mobile-emergency">
+                        <div class="emergency-badge emergency-badge-mobile">
+                            <span class="pulse-dot"></span>
+                            <span class="badge-text">24/7 Emergency: <a href="tel:+97142415888">+971 4 2415888</a></span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="emergency-badge">
+                    <span class="pulse-dot"></span>
+                    <span class="badge-text">24/7: <a href="tel:+97142415888">+971 4 2415888</a></span>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Our Services</h1>
+            <p class="page-subtitle">Comprehensive cybersecurity solutions tailored to your business needs</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" style="padding-top: 4rem;">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-magnifying-glass-chart"></i>
+                    </div>
+                    <h3 class="service-title">Digital Forensics & Incident Response</h3>
+                    <p class="service-description">
+                        Expert evidence recovery and incident analysis to identify, contain, and remediate security breaches.
+                    </p>
+                    <div class="service-details">
+                        <p>Our DFIR team provides rapid response to security incidents with forensic investigation, malware analysis, and breach remediation. We help preserve evidence, analyze attack vectors, and implement measures to prevent future incidents.</p>
+                    </div>
+                    <a href="#" class="service-link" onclick="toggleService(event)">Learn More <i class="fas fa-chevron-down"></i></a>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-tower-broadcast"></i>
+                    </div>
+                    <h3 class="service-title">Security Operations Center (SOC)</h3>
+                    <p class="service-description">
+                        Round-the-clock threat monitoring and response with advanced AI-powered detection systems.
+                    </p>
+                    <div class="service-details">
+                        <p>Our 24/7 SOC provides continuous monitoring, threat intelligence, and incident response. We utilize advanced SIEM platforms, threat hunting, and AI-powered detection to protect your organization around the clock.</p>
+                    </div>
+                    <a href="#" class="service-link" onclick="toggleService(event)">Learn More <i class="fas fa-chevron-down"></i></a>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3 class="service-title">Penetration Testing</h3>
+                    <p class="service-description">
+                        Identify vulnerabilities before attackers do with comprehensive penetration testing services.
+                    </p>
+                    <div class="service-details">
+                        <p>Our certified ethical hackers perform comprehensive penetration testing across networks, applications, and cloud infrastructure. We simulate real-world attacks to identify weaknesses and provide actionable remediation guidance.</p>
+                    </div>
+                    <a href="#" class="service-link" onclick="toggleService(event)">Learn More <i class="fas fa-chevron-down"></i></a>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="service-title">Security Assessments</h3>
+                    <p class="service-description">
+                        Comprehensive risk evaluation and compliance verification to strengthen your security posture.
+                    </p>
+                    <div class="service-details">
+                        <p>We conduct thorough security assessments including vulnerability scans, compliance audits (ISO 27001, PCI DSS, GDPR), and risk assessments. Get detailed reports with prioritized recommendations to strengthen your security posture.</p>
+                    </div>
+                    <a href="#" class="service-link" onclick="toggleService(event)">Learn More <i class="fas fa-chevron-down"></i></a>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="service-title">Platform Engineering</h3>
+                    <p class="service-description">
+                        Cloud-native infrastructure with integrated DevSecOps for secure, scalable deployments.
+                    </p>
+                    <div class="service-details">
+                        <p>Our platform engineering services help you build robust, scalable cloud infrastructure with security built-in from the ground up. We implement DevSecOps practices, container orchestration, and automated deployment pipelines.</p>
+                    </div>
+                    <a href="#" class="service-link" onclick="toggleService(event)">Learn More <i class="fas fa-chevron-down"></i></a>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="service-title">AI Solutions</h3>
+                    <p class="service-description">
+                        Automated threat detection and intelligent response systems powered by machine learning.
+                    </p>
+                    <div class="service-details">
+                        <p>Leverage cutting-edge artificial intelligence and machine learning to detect threats in real-time. Our AI-powered systems continuously learn from new attack patterns and automatically respond to emerging threats.</p>
+                    </div>
+                    <a href="#" class="service-link" onclick="toggleService(event)">Learn More <i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Secure Your Business?</h2>
+                <p>Contact us today for a free security consultation and assessment</p>
+                <a href="contact.html" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Digital Forensics & Incident Response</a></li>
+                        <li><a href="services.html">Security Operations Center</a></li>
+                        <li><a href="services.html">Penetration Testing</a></li>
+                        <li><a href="services.html">Security Assessments</a></li>
+                        <li><a href="services.html">Platform Engineering</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Locations</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">Dubai, UAE</p>
+                        <p style="font-size: 0.9rem; color: #B8B8B8; margin: 0;">
+                            Office 211D Ibn Battuta Gate Offices<br>
+                            Dubai, United Arab Emirates
+                        </p>
+                    </div>
+                    <div>
+                        <p style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">Milton Keynes, UK</p>
+                        <p style="font-size: 0.9rem; color: #B8B8B8; margin: 0;">
+                            Acorn House, 381 Midsummer Blvd<br>
+                            Milton Keynes MK9 3HP<br>
+                            United Kingdom
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect & Support</h3>
+                    <div class="social-links" style="margin-bottom: 1.5rem;">
+                        <a href="https://www.linkedin.com/company/dicuae/posts/?feedView=all" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #B8B8B8; margin: 0;">
+                        <strong style="color: #fff;">Emergency Support:</strong><br>
+                        <a href="tel:+97142415888" style="color: #00D9FF; text-decoration: none;">+971 4 2415888</a><br>
+                        <span style="font-size: 0.8rem;">Available 24/7</span>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Digital Insights. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

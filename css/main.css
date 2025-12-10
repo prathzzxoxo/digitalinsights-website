@@ -1399,3 +1399,137 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 1px solid rgba(212, 175, 55, 0.1);
     color: var(--text-dark);
 }
+
+/* ========================================
+   Page Hero (for individual pages)
+   ======================================== */
+
+.page-hero {
+    padding: 150px 0 80px;
+    background: linear-gradient(135deg, var(--bg-blue-darker) 0%, var(--bg-black) 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, transparent 48%, rgba(0, 217, 255, 0.05) 50%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(0, 217, 255, 0.05) 50%, transparent 52%);
+    background-size: 60px 60px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.page-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+    position: relative;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+    padding: 1rem 2rem;
+    display: inline-block;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========================================
+   CTA Section
+   ======================================== */
+
+.cta-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+/* ========================================
+   Values Section
+   ======================================== */
+
+.values-section {
+    padding: 80px 0;
+    background: var(--bg-black);
+}
+
+/* ========================================
+   Location Cards
+   ======================================== */
+
+.map-section {
+    padding: 80px 0;
+    background: var(--bg-blue-darker);
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.location-card {
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--cyan-primary);
+    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+}
+
+.location-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--cyan-primary) 0%, var(--blue-primary) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: var(--text-white);
+}
+
+.location-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+}
+
+.location-card p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
