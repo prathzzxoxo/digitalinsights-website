@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd individual pages for navigation sections\n\n- Created separate HTML pages: about.html, services.html, blog.html, contact.html\n- Updated navigation links to redirect to individual pages instead of anchor links\n- Added page-hero styles for consistent branding across all pages\n- Added CTA sections and location cards with interactive hover effects\n- Maintained same theme, header, footer, and emergency badge on all pages\n- Updated footer links to point to new pages\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)"
+    ]
+  }
+}
