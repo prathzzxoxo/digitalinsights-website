@@ -10,7 +10,9 @@
       "Bash(do sed -i 's|href=\"\"/\"\"|href=\"\"/digitalinsights-website/\"\"|g; s|href=\"\"/about\"\"|href=\"\"/digitalinsights-website/about\"\"|g; s|href=\"\"/services\"\"|href=\"\"/digitalinsights-website/services\"\"|g; s|href=\"\"/blog\"\"|href=\"\"/digitalinsights-website/blog\"\"|g; s|href=\"\"/contact\"\"|href=\"\"/digitalinsights-website/contact\"\"|g' \"$file\")",
       "Bash(done)",
       "Bash(git pull:*)",
-      "Bash(do sed -i 's|href=\"\"/digitalinsights-website/\"\"|href=\"\"/\"\"|g; s|href=\"\"/digitalinsights-website/about\"\"|href=\"\"/about\"\"|g; s|href=\"\"/digitalinsights-website/services\"\"|href=\"\"/services\"\"|g; s|href=\"\"/digitalinsights-website/blog\"\"|href=\"\"/blog\"\"|g; s|href=\"\"/digitalinsights-website/contact\"\"|href=\"\"/contact\"\"|g' \"$file\")"
+      "Bash(do sed -i 's|href=\"\"/digitalinsights-website/\"\"|href=\"\"/\"\"|g; s|href=\"\"/digitalinsights-website/about\"\"|href=\"\"/about\"\"|g; s|href=\"\"/digitalinsights-website/services\"\"|href=\"\"/services\"\"|g; s|href=\"\"/digitalinsights-website/blog\"\"|href=\"\"/blog\"\"|g; s|href=\"\"/digitalinsights-website/contact\"\"|href=\"\"/contact\"\"|g' \"$file\")",
+      "Bash(for file in about/index.html blog/index.html contact/index.html)",
+      "Bash(do sed:*)"
     ]
   }
 }
