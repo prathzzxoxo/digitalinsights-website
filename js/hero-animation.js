@@ -1,4 +1,4 @@
-// Hero Page Animation - Simplified particle system
+// Hero Page Animation - Matches home page SOC style
 class HeroAnimation {
     constructor() {
         this.canvas = document.getElementById('heroCanvas');
@@ -6,13 +6,26 @@ class HeroAnimation {
 
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.connections = [];
+        this.hexagons = [];
+        this.pulsePhase = 0;
+
+        this.colors = {
+            cyan: '#00D9FF',
+            cyanBright: '#00F0FF',
+            cyanGlow: '#00BFFF',
+            green: '#00FF88'
+        };
 
         this.init();
         this.createParticles();
+        this.createHexagons();
         this.animate();
 
-        window.addEventListener('resize', () => this.init());
+        window.addEventListener('resize', () => {
+            this.init();
+            this.createParticles();
+            this.createHexagons();
+        });
     }
 
     init() {
@@ -21,17 +34,47 @@ class HeroAnimation {
     }
 
     createParticles() {
-        const particleCount = Math.floor(this.canvas.width / 80);
+        // Dense grid-based particle distribution like home page
+        const cols = Math.ceil(this.canvas.width / 60);
+        const rows = Math.ceil(this.canvas.height / 60);
+        const cellWidth = this.canvas.width / cols;
+        const cellHeight = this.canvas.height / rows;
         this.particles = [];
 
-        for (let i = 0; i < particleCount; i++) {
-            this.particles.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
-                vx: (Math.random() - 0.5) * 0.3,
-                vy: (Math.random() - 0.5) * 0.3,
-                radius: Math.random() * 2 + 1,
-                opacity: Math.random() * 0.5 + 0.3
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                const particlesPerCell = Math.floor(Math.random() * 2) + 2;
+
+                for (let p = 0; p < particlesPerCell; p++) {
+                    const x = col * cellWidth + Math.random() * cellWidth;
+                    const y = row * cellHeight + Math.random() * cellHeight;
+
+                    this.particles.push({
+                        x: x,
+                        y: y,
+                        vx: (Math.random() - 0.5) * 0.25,
+                        vy: (Math.random() - 0.5) * 0.25,
+                        radius: Math.random() * 1.6 + 0.7,
+                        opacity: Math.random() * 0.5 + 0.25
+                    });
+                }
+            }
+        }
+    }
+
+    createHexagons() {
+        this.hexagons = [];
+        const isMobile = this.canvas.width < 768;
+        const count = isMobile ? 3 : 5;
+
+        for (let i = 0; i < count; i++) {
+            this.hexagons.push({
+                x: (i + 1) * (this.canvas.width / (count + 1)),
+                y: this.canvas.height * (0.3 + Math.random() * 0.4),
+                size: isMobile ? 20 : 25,
+                rotation: Math.random() * Math.PI * 2,
+                rotationSpeed: (Math.random() - 0.5) * 0.01,
+                pulseOffset: Math.random() * Math.PI * 2
             });
         }
     }
@@ -80,7 +123,7 @@ class HeroAnimation {
 
     drawGrid() {
         const gridSize = 80;
-        this.ctx.strokeStyle = 'rgba(0, 217, 255, 0.05)';
+        this.ctx.strokeStyle = 'rgba(0, 217, 255, 0.08)';
         this.ctx.lineWidth = 1;
 
         // Vertical lines
@@ -100,6 +143,60 @@ class HeroAnimation {
         }
     }
 
+    drawHexagon(x, y, size, rotation) {
+        this.ctx.save();
+        this.ctx.translate(x, y);
+        this.ctx.rotate(rotation);
+        this.ctx.beginPath();
+
+        for (let i = 0; i < 6; i++) {
+            const angle = (Math.PI / 3) * i;
+            const hx = size * Math.cos(angle);
+            const hy = size * Math.sin(angle);
+            if (i === 0) {
+                this.ctx.moveTo(hx, hy);
+            } else {
+                this.ctx.lineTo(hx, hy);
+            }
+        }
+
+        this.ctx.closePath();
+        this.ctx.restore();
+    }
+
+    drawHexagons() {
+        this.pulsePhase += 0.02;
+
+        this.hexagons.forEach(hex => {
+            hex.rotation += hex.rotationSpeed;
+
+            // Pulsing effect
+            const pulse = Math.sin(this.pulsePhase + hex.pulseOffset) * 0.2 + 0.8;
+            const glowSize = hex.size * pulse;
+
+            // Outer glow
+            this.ctx.shadowBlur = 15;
+            this.ctx.shadowColor = this.colors.cyan;
+
+            // Draw hexagon
+            this.drawHexagon(hex.x, hex.y, hex.size, hex.rotation);
+            this.ctx.strokeStyle = `rgba(0, 217, 255, ${0.4 * pulse})`;
+            this.ctx.lineWidth = 2;
+            this.ctx.stroke();
+
+            this.ctx.fillStyle = `rgba(0, 217, 255, ${0.05 * pulse})`;
+            this.ctx.fill();
+
+            // Inner glow hexagon
+            this.drawHexagon(hex.x, hex.y, hex.size * 0.7, hex.rotation);
+            this.ctx.strokeStyle = `rgba(0, 240, 255, ${0.3 * pulse})`;
+            this.ctx.lineWidth = 1;
+            this.ctx.stroke();
+
+            this.ctx.shadowBlur = 0;
+        });
+    }
+
     animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -109,6 +206,9 @@ class HeroAnimation {
         // Draw particles and connections
         this.drawParticles();
         this.drawConnections();
+
+        // Draw hexagons
+        this.drawHexagons();
 
         requestAnimationFrame(() => this.animate());
     }
