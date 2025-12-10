@@ -3,7 +3,12 @@
     "allow": [
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nAdd individual pages for navigation sections\n\n- Created separate HTML pages: about.html, services.html, blog.html, contact.html\n- Updated navigation links to redirect to individual pages instead of anchor links\n- Added page-hero styles for consistent branding across all pages\n- Added CTA sections and location cards with interactive hover effects\n- Maintained same theme, header, footer, and emergency badge on all pages\n- Updated footer links to point to new pages\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(for file in services/index.html about/index.html blog/index.html contact/index.html)",
+      "Bash(do sed -i 's|href=\"\"/\"\"|href=\"\"/digitalinsights-website/\"\"|g; s|href=\"\"/about\"\"|href=\"\"/digitalinsights-website/about\"\"|g; s|href=\"\"/services\"\"|href=\"\"/digitalinsights-website/services\"\"|g; s|href=\"\"/blog\"\"|href=\"\"/digitalinsights-website/blog\"\"|g; s|href=\"\"/contact\"\"|href=\"\"/digitalinsights-website/contact\"\"|g' \"$file\")",
+      "Bash(done)"
     ]
   }
 }
